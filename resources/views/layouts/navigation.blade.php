@@ -41,6 +41,9 @@
                             </x-dropdown-link>
 
                             <!-- Authentication -->
+                            <x-dropdown-link :href="route('posts.create')">
+                                {{ __('Create Post') }}
+                            </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
@@ -100,6 +103,9 @@
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->
+                    <x-dropdown-link :href="route('posts.create')">
+                        {{ __('Create Post') }}
+                    </x-dropdown-link>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
