@@ -83,5 +83,6 @@
     "Event End": "終了日時",
     "Event Name": "タイトル",
     "Description": "詳細",
-    "Log In": "ログイン"
+    "Log In": "ログイン",
+    "pagination": ":total件中、:from~:to件表示"
 }
