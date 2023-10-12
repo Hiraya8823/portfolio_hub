@@ -4,16 +4,17 @@
 
         <x-validation-errors :errors="$errors" />
 
-        <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data"
+        <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data"
             class="rounded pt-3 pb-8 mb-4">
             @csrf
+            @method('PUT')
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm mb-2" for="title">
                     タイトル
                 </label>
                 <input type="text" name="title"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-yellow-600 w-full py-2 px-3"
-                    required placeholder="タイトル" value="{{ old('title') }}">
+                    required placeholder="タイトル" value="{{ old('title', $post->title) }}">
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm mb-2" for="url">
@@ -21,7 +22,7 @@
                 </label>
                 <input type="text" name="url"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-yellow-600 w-full py-2 px-3"
-                    placeholder="ポートフォリオURL" value="{{ old('url') }}">
+                    placeholder="ポートフォリオURL" value="{{ old('url', $post->url) }}">
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm mb-2" for="description">
@@ -29,15 +30,16 @@
                 </label>
                 <textarea  name="description" rows="10"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-yellow-600 w-full py-2 px-3"
-                    required>{{ old('description') }}</textarea>
+                    required>{{ old('description', $post->description) }}</textarea>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm mb-2" for="image">
                     アプリ画像
                 </label>
+                <img src="{{ $post->image_url() }}" alt="" class="mb-4 md:w-2/5 sm:auto">
                 <input type="file" name="image"class="border-gray-300">
             </div>
-            <input type="submit" value="登録"
+            <input type="submit" value="更新"
                 class="w-full bg-yellow-700 hover:bg-yellow-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
         </form>
     </div>

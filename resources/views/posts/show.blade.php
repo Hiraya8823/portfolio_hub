@@ -1,6 +1,15 @@
 <x-app-layout>
-    <div class="container lg:w-5/6 md:w-4/5 w-11/12 mx-auto my-8 px-8 py-4 bg-white shadow-md">
-        <article class="mb-2"> 
+    <div class="container lg:w-3/4 md:w-4/5 w-11/12 mx-auto my-8 px-8 py-4 bg-white shadow-md">
+
+        @if (session('notice'))
+            <div class="bg-blue-100 border-brue-500 text-blue-700 border-l-4 p-4 my-2">
+                {{ session('notice') }}
+            </div>
+        @endif
+
+        <x-validation-errors :errors="$errors" />
+
+        <article class="mb-2">
             <div class="lg:flex md:flex-none place-content-between items-center">
                 <div>
                     <h2
@@ -23,14 +32,18 @@
             <p class="text-gray-600 text-vase pb-4">{!! nl2br(e($post->description)) !!}</p>
         </article>
         <div class="flex flex-row text-center my-4">
-            <a href="{{ route('posts.edit', $post) }}"
-                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">編集</a>
-            <form action="{{ route('posts.destroy', $post) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="submit" value="削除" onclick="if(!confirm('本当に削除しますか？')){return false};"
-                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20">
-            </form>
+            @can('update', $post)
+                <a href="{{ route('posts.edit', $post) }}"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">編集</a>
+            @endcan
+            @can('delete', $post)
+                <form action="{{ route('posts.destroy', $post) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" value="削除" onclick="if(!confirm('本当に削除しますか？')){return false};"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20">
+                </form>
+            @endcan
         </div>
     </div>
 
