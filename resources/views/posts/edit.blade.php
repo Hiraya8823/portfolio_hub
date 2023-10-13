@@ -28,7 +28,7 @@
                 <label class="block text-gray-700 text-sm mb-2" for="description">
                     アプリ説明
                 </label>
-                <textarea  name="description" rows="10"
+                <textarea name="description" rows="10"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-yellow-600 w-full py-2 px-3"
                     required>{{ old('description', $post->description) }}</textarea>
             </div>
@@ -36,7 +36,7 @@
                 <label class="block text-gray-700 text-sm mb-2" for="image">
                     アプリ画像
                 </label>
-                <img src="{{ $post->image_url() }}" alt="" class="mb-4 md:w-2/5 sm:auto">
+                <img src="{{ $post->image_url }}" alt="" class="mb-4 md:w-2/5 sm:auto">
                 <input type="file" name="image"class="border-gray-300">
             </div>
             <input type="submit" value="更新"

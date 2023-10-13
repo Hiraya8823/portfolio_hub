@@ -1,11 +1,7 @@
 <x-app-layout>
     <div class="container lg:w-3/4 md:w-4/5 w-11/12 mx-auto my-8 px-8 py-4 bg-white shadow-md">
 
-        @if (session('notice'))
-            <div class="bg-blue-100 border-brue-500 text-blue-700 border-l-4 p-4 my-2">
-                {{ session('notice') }}
-            </div>
-        @endif
+        <x-flash-message :message="session('notice')" />
 
         <x-validation-errors :errors="$errors" />
 
@@ -25,7 +21,7 @@
                         target="_blank">ホームページを見る</a>
                 </div>
                 <div>
-                    <img src="{{ $post->image_url() }}" alt="" class="max-h-80">
+                    <img src="{{ $post->image_url }}" alt="" class="max-h-80">
                 </div>
             </div>
             <h2 class="font-bold text-lg text-gray-900 pt-6 pb-1">ホームページ概要</h2>
