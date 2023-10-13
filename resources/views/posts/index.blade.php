@@ -1,10 +1,13 @@
 <x-app-layout>
     <div class="container max-w-screen-xl mx-auto px-4 md:px-12 pb-3 mt-3">
+
+        <x-flash-message :message="session('notice')" />
+
         <div class="flex flex-wrap mx-1 lg:mx-4 mb-4">
             @foreach ($posts as $post)
                 <article class="w-full p-4 md:w-1/3 text-l text-gray-800 leading-normal">
                     <a href="{{ route('posts.show', $post) }}">
-                        <img class="lg:h-48 md:h-36 w-full object-cover" src="{{ $post->image_url() }}" alt="">
+                        <img class="lg:h-48 md:h-36 w-full object-cover" src="{{ $post->image_url }}" alt="">
                         <div class="p-3">
                             <h2>制作者&nbsp;:&nbsp;{{ $post->user->name }}</h2>
                             <p class="w-full md:text-base font-normal text-gray-600">
