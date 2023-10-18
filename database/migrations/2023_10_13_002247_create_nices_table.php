@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('nices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('post_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('ip')
+                ->nullable();
             $table->timestamps();
         });
     }

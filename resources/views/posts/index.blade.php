@@ -1,4 +1,11 @@
 <x-app-layout>
+    <img class="md:h-96 h-48 w-full object-cover" src="{{ asset('images/main_img.jpg') }}" alt="">
+    <section>
+        <div class="pt-10">
+            <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin">Would you like to make portfolio together?</h1>
+        </div>
+    </section>
+
     <div class="container max-w-screen-xl mx-auto px-4 md:px-12 pb-3 mt-3">
 
         <x-flash-message :message="session('notice')" />

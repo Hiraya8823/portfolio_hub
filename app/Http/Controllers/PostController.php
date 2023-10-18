@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use App\Models\Nice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Can;
 
 class PostController extends Controller
 {
@@ -68,8 +70,22 @@ class PostController extends Controller
     public function show(string $id)
     {
         $post = Post::find($id);
+        $post->nices = Nice::all();
+        $request = request();
+        $ip = $request->ip();
 
-        return view('posts.show', compact('post'));
+        if (Auth::check()) {
+            $nice = Nice::where('post_id', $post->id)
+                ->where('user_id', auth()->user()->id)
+                ->first();
+        }else {
+            $nice = Nice::where('post_id', $post->id)
+                ->where('user_id', null)
+                ->where('ip', $ip)
+                ->first();
+        }
+
+        return view('posts.show', compact('post', 'nice'));
     }
 
     /**

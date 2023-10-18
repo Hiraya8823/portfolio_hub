@@ -1,4 +1,3 @@
 <div class="flex items-center">
-    <img src="{{ asset('images/logo_p03.png') }}" alt="" class="w-10">
-    <h1 class="text-yellow-700 text-lg font-bold pl-2">PortFolio Hub</h1>
+    <h1 class="text-gray-700 md:text-3xl sm:text-2xl font-bold  title_font_family md:tracking-[.3em] sm:tracking-[.2em]">EVERYONE'S WORKS</h1>
 </div>
