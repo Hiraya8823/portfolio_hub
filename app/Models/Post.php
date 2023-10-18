@@ -21,6 +21,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function nices()
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function getImageUrlAttribute()
     {
         return Storage::url($this->image_path);

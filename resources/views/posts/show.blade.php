@@ -27,19 +27,40 @@
             <h2 class="font-bold text-lg text-gray-900 pt-6 pb-1">ホームページ概要</h2>
             <p class="text-gray-600 text-vase pb-4">{!! nl2br(e($post->description)) !!}</p>
         </article>
-        <div class="flex flex-row text-center my-4">
-            @can('update', $post)
-                <a href="{{ route('posts.edit', $post) }}"
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">編集</a>
-            @endcan
-            @can('delete', $post)
-                <form action="{{ route('posts.destroy', $post) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="削除" onclick="if(!confirm('本当に削除しますか？')){return false};"
-                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20">
-                </form>
-            @endcan
+        <div class="flex place-content-between items-center">
+            <div class="my-4">
+                @if ($nice)
+                    <a href="{{ route('unnice', $post) }}"
+                        class="bg-rose-400 hover:bg-rose-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">
+                        いいね
+                        <span class="badge">
+                            {{ $post->nices->count() }}
+                        </span>
+                    </a>
+                @else
+                    <a href="{{ route('nice', $post) }}"
+                        class="bg-rose-300 hover:bg-rose-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">
+                        いいね
+                        <span class="badge">
+                            {{ $post->nices->count() }}
+                        </span>
+                    </a>
+                @endif
+            </div>
+            <div class="flex flex-row text-center my-4">
+                @can('update', $post)
+                    <a href="{{ route('posts.edit', $post) }}"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">編集</a>
+                @endcan
+                @can('delete', $post)
+                    <form action="{{ route('posts.destroy', $post) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="削除" onclick="if(!confirm('本当に削除しますか？')){return false};"
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20">
+                    </form>
+                @endcan
+            </div>
         </div>
     </div>
 
