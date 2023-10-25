@@ -2,10 +2,9 @@
     <div class="container max-w-screen-xl mx-auto px-4 md:px-12 pb-3 mt-3">
 
         <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">Search</h1>
-
-        <form method="get" action="{{ route('search') }}" class="search_container text-center">
-            <input type="text" size="40" placeholder="キーワード検索">
-            <input type="submit" value="Search">
+        <form action="{{ route('search') }}" method="get">
+            <input type="search" name="keyword" placeholder="キーワードで検索" value="{{ old('name') }}">
+            <input type="submit" value="検索">
         </form>
 
         <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">Works</h1>
@@ -19,6 +18,11 @@
                         <img class="lg:h-48 md:h-36 w-full object-cover" src="{{ $post->image_url }}" alt="">
                         <div class="p-3">
                             <h2>制作者&nbsp;:&nbsp;{{ $post->user->name }}</h2>
+                            <p class="w-full md:text-base font-normal text-gray-600">
+                                制作日&nbsp;:&nbsp;<span
+                                    class="text-red-400 font-bold">{{ date('Y-m-d H:i:s', strtotime('-10 day')) < $post->created_at ? 'NEW' : '' }}</span>
+                                {{ $post->created_at }}
+                            </p>
                             <h2
                                 class="font-bold font-sans break-normal text-gray-900 text-base md:text-4xl break-words pb-6">
                                 {{ $post->title }}</h2>

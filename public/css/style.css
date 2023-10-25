@@ -4,3 +4,27 @@
 .title_font_family {
     font-family: 'Roboto', sans-serif;
 }
+
+.search_container {
+    box-sizing: border-box;
+}
+
+.search_container input[type="text"] {
+    height: 2.2em;
+}
+
+.search_container input[type="text"]:focus {
+    outline: 0;
+}
+
+.search_container input[type="submit"] {
+    cursor: pointer;
+    border: none;
+    background: #000000;
+    color: #fff;
+    outline: none;
+    height: 2.2em;
+    padding: 0 5px;
+    margin-left: 10px;
+}
+

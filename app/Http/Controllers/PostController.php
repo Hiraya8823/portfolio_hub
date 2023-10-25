@@ -6,6 +6,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use App\Models\Nice;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -73,19 +74,23 @@ class PostController extends Controller
         $post->nices = Nice::all();
         $request = request();
         $ip = $request->ip();
+        $nices = Nice::where('post_id', $post->id)
+            ->count();
 
         if (Auth::check()) {
             $nice = Nice::where('post_id', $post->id)
                 ->where('user_id', auth()->user()->id)
                 ->first();
-        }else {
+
+            
+        } else {
             $nice = Nice::where('post_id', $post->id)
                 ->where('user_id', null)
                 ->where('ip', $ip)
                 ->first();
         }
 
-        return view('posts.show', compact('post', 'nice'));
+        return view('posts.show', compact('post', 'nices', 'nice'));
     }
 
     /**
@@ -178,6 +183,29 @@ class PostController extends Controller
         return redirect()->route('posts.index')
             ->with('notice', '記事を削除しました');
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $query = Post::query();
+
+        if (!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orwhere('description', 'LIKE', "%{$keyword}%")
+                ->latest()->paginate(9);;
+
+        }
+            $posts = $query->get();
+
+        return view('posts.index', compact('posts'));
+    }
+
+    public function welcome()
+    {
+        $posts = Post::with('user')->latest()->paginate(6);
+        return view('posts.welcome', compact('posts'));
+    }
+
 
     private static function createFileName($file)
     {

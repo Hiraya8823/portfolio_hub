@@ -19,8 +19,9 @@
                             {{ Auth::user()->name }} さん
                         </p>
                         <div class="flex gap-10">
-                            <a href="{{ route('profile.edit') }}">Profile</a>
+                            <a href="{{ route('posts.index') }}">WorksMore</a>
                             <a href="{{ route('posts.create') }}">Create</a>
+                            <a href="{{ route('profile.edit') }}">Profile</a>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <input type="submit" value="Log Out" class="cursor-pointer">
@@ -29,6 +30,7 @@
                     </div>
                 @else
                     <div class="pb-5 pr-5">
+                        <a href="{{ route('posts.index') }}" class="pr-10">WorksMore</a>
                         <a href="{{ route('register') }}" class="pr-10">Sign Up</a>
                         <a href="{{ route('login') }}">Log In</a>
                     </div>
@@ -62,6 +64,9 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
+                    <x-responsive-nav-link :href="route('posts.index')">
+                        WorksMore
+                    </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('profile.edit')">
                         Profile
                     </x-responsive-nav-link>
@@ -81,6 +86,9 @@
                     </form>
                 </div>
             @else
+                <x-responsive-nav-link :href="route('posts.index')">
+                    WorksMore
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('register')">
                     Sign Up
                 </x-responsive-nav-link>

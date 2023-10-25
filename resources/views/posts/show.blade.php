@@ -6,8 +6,11 @@
         <x-validation-errors :errors="$errors" />
 
         <article class="mb-2">
-            <div class="lg:flex md:flex-none place-content-between items-center">
-                <div>
+            <div class="lg:flex md:flex-none items-center pt-5 gap-10">
+                <div class="basis-1/2">
+                    <img src="{{ $post->image_url }}" alt="">
+                </div>
+                <div class="basis-1/2">
                     <h2
                         class="font-bold font-sans break-normal text-gray-900 pt-6 pb-1 text-3xl md:text-4xl break-words">
                         {{ $post->title }}</h2>
@@ -20,11 +23,8 @@
                     <a href="{{ $post->url }}" class="text-blue-600 hover:text-blue-800 font-bold"
                         target="_blank">ホームページを見る</a>
                 </div>
-                <div>
-                    <img src="{{ $post->image_url }}" alt="" class="max-h-80">
-                </div>
             </div>
-            <h2 class="font-bold text-lg text-gray-900 pt-6 pb-1">ホームページ概要</h2>
+            <h2 class="font-bold text-lg text-gray-900 pt-10 pb-1">ホームページ概要</h2>
             <p class="text-gray-600 text-vase pb-4">{!! nl2br(e($post->description)) !!}</p>
         </article>
         <div class="flex place-content-between items-center">
@@ -34,7 +34,7 @@
                         class="bg-rose-400 hover:bg-rose-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">
                         いいね
                         <span class="badge">
-                            {{ $post->nices->count() }}
+                            {{ $nices }}
                         </span>
                     </a>
                 @else
@@ -42,7 +42,7 @@
                         class="bg-rose-300 hover:bg-rose-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">
                         いいね
                         <span class="badge">
-                            {{ $post->nices->count() }}
+                            {{ $nices }}
                         </span>
                     </a>
                 @endif
