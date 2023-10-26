@@ -1,19 +1,12 @@
 <x-app-layout>
     <div class="container max-w-screen-xl mx-auto px-4 md:px-12 pb-3 mt-3">
 
-        <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">Search</h1>
-
-        <form method="get" action="{{ route('search') }}" class="search_container text-center">
-            <input type="text" size="40" placeholder="キーワード検索">
-            <input type="submit" value="Search">
-        </form>
-
-        <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">Works</h1>
+        {{-- <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">{{ $user->user->name }}さんの記事一覧</h1> --}}
 
         <x-flash-message :message="session('notice')" />
 
         <div class="flex flex-wrap mx-1 lg:mx-4 mb-4">
-            @foreach ($posts as $post)
+            @foreach ($bookmarks->post as $post)
                 <article class="w-full p-4 md:w-1/3 text-l text-gray-800 leading-normal">
                     <a href="{{ route('posts.show', $post) }}">
                         <img class="lg:h-48 md:h-36 w-full object-cover" src="{{ $post->image_url }}" alt="">

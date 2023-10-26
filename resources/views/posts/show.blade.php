@@ -20,8 +20,14 @@
                             class="text-red-400 font-bold">{{ date('Y-m-d H:i:s', strtotime('-10 day')) < $post->created_at ? 'NEW' : '' }}</span>
                         {{ $post->created_at }}
                     </p>
-                    <a href="{{ $post->url }}" class="text-blue-600 hover:text-blue-800 font-bold"
-                        target="_blank">ホームページを見る</a>
+                    <div>
+                        <a href="{{ $post->url }}" class="text-blue-600 hover:text-blue-800 font-bold"
+                            target="_blank">ホームページを見る</a>
+                    </div>
+                    <div class="pt-2">
+                        <a href="{{ route('posts.profile', $post->user_id) }}"
+                            class="text-blue-600 hover:text-blue-800 font-bold">{{ $post->user->name }}さんの記事を見る</a>
+                    </div>
                 </div>
             </div>
             <h2 class="font-bold text-lg text-gray-900 pt-10 pb-1">ホームページ概要</h2>

@@ -1,14 +1,7 @@
 <x-app-layout>
     <div class="container max-w-screen-xl mx-auto px-4 md:px-12 pb-3 mt-3">
 
-        <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">Search</h1>
-
-        <form method="get" action="{{ route('search') }}" class="search_container text-center">
-            <input type="text" size="40" placeholder="キーワード検索">
-            <input type="submit" value="Search">
-        </form>
-
-        <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">Works</h1>
+        <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">{{ $user->user->name }}さんの記事一覧</h1>
 
         <x-flash-message :message="session('notice')" />
 

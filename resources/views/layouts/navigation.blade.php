@@ -20,6 +20,7 @@
                         </p>
                         <div class="flex gap-10">
                             <a href="{{ route('posts.index') }}">WorksMore</a>
+                            <a href="{{ route('bookmark') }}">BookMarks</a>
                             <a href="{{ route('posts.create') }}">Create</a>
                             <a href="{{ route('profile.edit') }}">Profile</a>
                             <form action="{{ route('logout') }}" method="post">

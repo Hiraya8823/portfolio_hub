@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NiceController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,11 @@ Route::get('/posts/unnice/{post}', [NiceController::class, 'unnice'])
     ->name('unnice');
 Route::get('/search', [PostController::class, 'search'])
     ->name('search');
+Route::get('/posts/profile/{user_id}', [PostController::class, 'profile'])
+    ->name('posts.profile');
+Route::get('/bookmark', [PostController::class, 'bookmark'])
+    ->name('bookmark')
+    ->middleware('auth');
 
 
 require __DIR__.'/auth.php';
