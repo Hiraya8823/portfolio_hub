@@ -197,7 +197,7 @@ class PostController extends Controller
         }
             $posts = $query->get();
 
-        return view('posts.index', compact('posts'));
+        return view('posts.search', compact('posts'));
     }
 
         public function profile(string $user_id)
@@ -213,7 +213,6 @@ class PostController extends Controller
         $user_id = Auth::user()->id;
         $bookmarks = Nice::with(['post'])->where('user_id', $user_id)->latest()->paginate(9);
 
-        dd($bookmarks);
         return view('posts.bookmark', compact('bookmarks'));
     }
 

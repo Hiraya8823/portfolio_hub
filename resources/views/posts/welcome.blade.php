@@ -23,7 +23,7 @@
                         <div class="p-3">
                             <h2>制作者&nbsp;:&nbsp;{{ $post->user->name }}</h2>
                             <h2
-                                class="font-bold font-sans break-normal text-gray-900 text-base md:text-4xl break-words pb-3">
+                                class="font-bold font-sans break-normal text-gray-900 text-base md:text-2xl break-words pb-3">
                                 {{ $post->title }}</h2>
                         </div>
                     </a>

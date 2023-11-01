@@ -6,20 +6,20 @@
         <x-flash-message :message="session('notice')" />
 
         <div class="flex flex-wrap mx-1 lg:mx-4 mb-4">
-            @foreach ($bookmarks->post as $post)
+            @foreach ($bookmarks as $bookmark)
                 <article class="w-full p-4 md:w-1/3 text-l text-gray-800 leading-normal">
-                    <a href="{{ route('posts.show', $post) }}">
-                        <img class="lg:h-48 md:h-36 w-full object-cover" src="{{ $post->image_url }}" alt="">
+                    <a href="{{ route('posts.show', $bookmark->post) }}">
+                        <img class="lg:h-48 md:h-36 w-full object-cover" src="{{ $bookmark->post->image_url }}" alt="">
                         <div class="p-3">
-                            <h2>制作者&nbsp;:&nbsp;{{ $post->user->name }}</h2>
+                            <h2>制作者&nbsp;:&nbsp;{{ $bookmark->user->name }}</h2>
                             <h2
                                 class="font-bold font-sans break-normal text-gray-900 text-base md:text-4xl break-words pb-6">
-                                {{ $post->title }}</h2>
+                                {{ $bookmark->title }}</h2>
                         </div>
                     </a>
                 </article>
             @endforeach
         </div>
-        {{ $posts->links() }}
+        {{ $bookmarks->links() }}
     </div>
 </x-app-layout>
