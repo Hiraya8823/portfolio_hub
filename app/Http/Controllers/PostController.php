@@ -197,7 +197,23 @@ class PostController extends Controller
         }
             $posts = $query->get();
 
-        return view('posts.index', compact('posts'));
+        return view('posts.search', compact('posts'));
+    }
+
+        public function profile(string $user_id)
+    {
+        $posts = Post::where('user_id', $user_id)->latest()->paginate(9);
+        $user = Post::where('user_id', $user_id)->first();
+        
+        return view('posts.profile', compact('posts', 'user'));
+    }
+
+        public function bookmark()
+    {
+        $user_id = Auth::user()->id;
+        $bookmarks = Nice::with(['post'])->where('user_id', $user_id)->latest()->paginate(9);
+
+        return view('posts.bookmark', compact('bookmarks'));
     }
 
     public function welcome()

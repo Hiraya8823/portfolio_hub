@@ -1,15 +1,7 @@
 <x-app-layout>
     <div class="container max-w-screen-xl mx-auto px-4 md:px-12 pb-3 mt-3">
 
-        <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">Search</h1>
-
-        <form method="get" action="{{ route('search') }}" class="search_container text-center">
-            @csrf
-            <input type="text" size="40" name="keyword" placeholder="キーワード検索">
-            <input type="submit" value="Search">
-        </form>
-
-        <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">Works</h1>
+        <h1 class="text-gray-900 lg:text-3xl text-2xl text-center font-thin pb-10 pt-10">{{ $user->user->name }}さんの記事一覧</h1>
 
         <x-flash-message :message="session('notice')" />
 
@@ -21,7 +13,7 @@
                         <div class="p-3">
                             <h2>制作者&nbsp;:&nbsp;{{ $post->user->name }}</h2>
                             <h2
-                                class="font-bold font-sans break-normal text-gray-900 text-base md:text-2xl break-words pb-6">
+                                class="font-bold font-sans break-normal text-gray-900 text-base md:text-4xl break-words pb-6">
                                 {{ $post->title }}</h2>
                         </div>
                     </a>
